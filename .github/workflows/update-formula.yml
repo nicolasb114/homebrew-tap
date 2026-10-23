@@ -1,0 +1,43 @@
+name: Update formula
+
+# Keeps the formula pointed at the latest upstream release.
+#
+# This runs in the tap repo rather than in pd-status-wall so it can push
+# with the built-in GITHUB_TOKEN; a workflow in the other repo would need
+# a hand-made cross-repo token kept in sync forever.
+#
+# The schedule means a new release is picked up within the hour on its
+# own. Run it from the Actions tab to publish immediately.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Point formula at latest release
+        id: bump
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/update_formula.py \
+            Formula/pd-status-wall.rb \
+            nicolasb114/pd-status-wall \
+            pd-status-wall
+
+      - name: Commit
+        if: steps.bump.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/pd-status-wall.rb
+          git commit -m "pd-status-wall ${{ steps.bump.outputs.version }}"
+          git push
