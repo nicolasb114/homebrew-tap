@@ -1,28 +1,28 @@
 class PdStatusWall < Formula
   desc "Status video wall for PagerDuty Business Services"
   homepage "https://github.com/nicolasb114/pd-status-wall"
-  version "0.6.0"
+  version "0.7.0"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/nicolasb114/pd-status-wall/releases/download/v#{version}/pd-status-wall-macos-apple-silicon.tar.gz"
-      sha256 "a4ce067deb9afd5ebdf94925a737e07578e9dd7a0c1642222d30e3492f805772"
+      sha256 "1ab270ea2d981a8211c7c1eee6148eedcf6a86b6d3b6e2559b7d661a82453c04"
     end
     on_intel do
       url "https://github.com/nicolasb114/pd-status-wall/releases/download/v#{version}/pd-status-wall-macos-intel.tar.gz"
-      sha256 "f11df07da43e74d1bb9b70feb4e635b391107066e00086f50cb90e7bc79b8bda"
+      sha256 "96f1bb5eb81a215f4fb7c1dc21862e1a04407e3f2c2c0ad62a7a4295459087e1"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/nicolasb114/pd-status-wall/releases/download/v#{version}/pd-status-wall-linux-arm64.tar.gz"
-      sha256 "39d92c951092bad175620f69fe1d9f33f09a2c0ac2abd6be300bbed6a79e40d9"
+      sha256 "7af8b410532c29f917d7daa03df25ffe22754c1428250a29dbfb89e41246f579"
     end
     on_intel do
       url "https://github.com/nicolasb114/pd-status-wall/releases/download/v#{version}/pd-status-wall-linux-x86-64.tar.gz"
-      sha256 "fb5887ac7cb2466bc6bf6ab32bfe73f1920a7226ccb8dfd1dc5f872164e22422"
+      sha256 "44dcff34d4e66a3e2250b5dc94d4a8f0edda6240ebb6b1615bce97cfd0faff0b"
     end
   end
 
